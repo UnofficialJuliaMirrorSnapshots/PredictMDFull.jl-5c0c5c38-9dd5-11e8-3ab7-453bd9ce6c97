@@ -6,9 +6,17 @@ set -ev
 
 julia --check-bounds=yes --color=yes -e '
     import Pkg;
-    Pkg.add([Pkg.PackageSpec(rev="master", url="https://github.com/DilumAluthge/PredictMD.jl",), Pkg.PackageSpec(rev="master", url="https://github.com/DilumAluthge/PredictMDExtra.jl",),]);
-    Pkg.build("PredictMD");
-    Pkg.build("PredictMDExtra");
+    Pkg.Registry.add(Pkg.RegistrySpec(name="PredictMDRegistry",url="https://github.com/bcbi/PredictMDRegistry.git",uuid="26a550a3-39fe-4af4-af6d-e8814c2b6dd9",));
+    '
+
+julia --check-bounds=yes --color=yes -e '
+    import Pkg;
+    Pkg.Registry.add("General");
+    '
+
+julia --check-bounds=yes --color=yes -e '
+    import Pkg;
+    Pkg.Registry.update();
     '
 
 julia --check-bounds=yes --color=yes -e '

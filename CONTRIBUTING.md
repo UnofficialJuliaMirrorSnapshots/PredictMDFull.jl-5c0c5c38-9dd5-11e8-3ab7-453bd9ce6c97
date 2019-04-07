@@ -516,6 +516,10 @@ this, go to
 scroll down to find the release branch, and then click the
 trash can icon to delete the branch.
 
+#### Step 24:
+
+Tag the new release with [PredictMDRegistry](https://github.com/bcbi/PredictMDRegistry). Instructions are available here: [https://github.com/bcbi/PredictMDRegistry/blob/master/CONTRIBUTING.md](https://github.com/bcbi/PredictMDRegistry/blob/master/CONTRIBUTING.md)
+
 Congratulations, you are finished!
 
 <!-- End of file -->
