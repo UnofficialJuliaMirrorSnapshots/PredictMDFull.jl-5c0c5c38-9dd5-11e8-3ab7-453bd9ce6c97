@@ -46,6 +46,7 @@ Test.@testset "Unit tests           " begin
     include(testmoduleb_filename)
     include(testmodulec_filename)
     include(joinpath("test_package_directory.jl"))
+    include(joinpath("test_package_list.jl"))
     include(joinpath("test_registry_url_list.jl"))
     include(joinpath("test_version.jl"))
 end

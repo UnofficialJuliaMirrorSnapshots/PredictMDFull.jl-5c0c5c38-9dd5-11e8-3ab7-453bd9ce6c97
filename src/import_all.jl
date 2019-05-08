@@ -23,21 +23,6 @@ import_all() = import_all(Main)
 
 function import_all(m::Module)::Nothing
     package_list::Vector{String} = sort(unique(strip.(_package_list())))
-    stdlib_list::Vector{String} = sort(unique(strip.(_stdlib_list())))
-    for s in stdlib_list
-        Base.eval(
-            m,
-            Base.Meta.parse(
-                string(
-                    "try ",
-                    "import $(string(s)); ",
-                    "@info(\"imported $(string(s))\"); ",
-                    "catch e1 @debug(\"ignoring exception: \", e1,); ",
-                    "end ",
-                    ),
-                ),
-            )
-    end
     for p in package_list
         Base.eval(
             m,
