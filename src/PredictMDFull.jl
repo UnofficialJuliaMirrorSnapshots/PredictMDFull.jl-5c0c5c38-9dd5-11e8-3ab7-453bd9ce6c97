@@ -12,6 +12,8 @@ include(joinpath("import_predictmd.jl"))
 
 include(joinpath("import_predictmdextra.jl"))
 
+include(joinpath("import_required_packages.jl"))
+
 include(joinpath("welcome.jl"))
 
 include(joinpath("init.jl"))

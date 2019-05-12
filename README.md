@@ -19,7 +19,7 @@ To install PredictMDFull, open Julia and run the following lines:
 ```julia
 import Pkg;
 Pkg.add(Pkg.PackageSpec(rev="master", url="https://github.com/bcbi/PredictMDExtra.jl",));
-# Pkg.add(Pkg.PackageSpec(rev="master", url="https://github.com/bcbi/PredictMD.jl",));
+Pkg.add(Pkg.PackageSpec(rev="master", url="https://github.com/bcbi/PredictMD.jl",));
 Pkg.add(Pkg.PackageSpec(rev="master", url="https://github.com/bcbi/PredictMDFull.jl",));
 ```
 
