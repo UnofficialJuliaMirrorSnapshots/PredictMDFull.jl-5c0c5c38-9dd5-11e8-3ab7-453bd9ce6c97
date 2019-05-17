@@ -518,7 +518,7 @@ trash can icon to delete the branch.
 
 #### Step 24:
 
-Tag the new release with [PredictMDRegistry](https://github.com/bcbi/PredictMDRegistry). Instructions are available here: [https://github.com/bcbi/PredictMDRegistry/blob/master/CONTRIBUTING.md](https://github.com/bcbi/PredictMDRegistry/blob/master/CONTRIBUTING.md)
+Tag the new release with [BCBIRegistry](https://github.com/bcbi/BCBIRegistry). Instructions are available here: [https://github.com/bcbi/BCBIRegistry/blob/master/CONTRIBUTING.md](https://github.com/bcbi/BCBIRegistry/blob/master/CONTRIBUTING.md)
 
 Congratulations, you are finished!
 
