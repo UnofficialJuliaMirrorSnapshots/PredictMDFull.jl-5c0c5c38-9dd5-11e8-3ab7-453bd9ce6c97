@@ -15,10 +15,11 @@ PredictMDFull provides users with a convenient way of installing [PredictMD](htt
 
 ## Installation
 
-PredictMDFull is registered in the Julia General registry. Therefore, to install PredictMDFull, simply open Julia and run the following two lines:
+PredictMDFull is registered in the Julia General registry. Therefore, to install PredictMDFull, simply open Julia and run the following three lines:
 ```julia
 import Pkg
 Pkg.add("PredictMDFull")
+import PredictMDFull
 ```
 
 ## CI/CD
