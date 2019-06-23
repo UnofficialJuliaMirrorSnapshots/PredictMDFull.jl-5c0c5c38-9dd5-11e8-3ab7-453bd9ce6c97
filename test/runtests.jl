@@ -52,11 +52,11 @@ Test.@testset "Unit tests           " begin
 end
 
 Test.@testset "Import PredictMDExtra" begin
-    include(joinpath("test_import_predictmdextra.jl"))
+    import PredictMDExtra
 end
 
 Test.@testset "Import PredictMD     " begin
-    include(joinpath("test_import_predictmd.jl"))
+    import PredictMD
 end
 
 Test.@testset "Test import_all()" begin
