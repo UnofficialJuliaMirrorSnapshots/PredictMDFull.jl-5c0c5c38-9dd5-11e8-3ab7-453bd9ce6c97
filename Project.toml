@@ -1,7 +1,7 @@
 name = "PredictMDFull"
 uuid = "5c0c5c38-9dd5-11e8-3ab7-453bd9ce6c97"
 authors = ["Dilum Aluthge <dilum@aluthge.com>", "Brown Center for Biomedical Informatics <bcbi@brown.edu>"]
-version = "0.9.0-DEV"
+version = "0.10.0-DEV"
 
 [deps]
 Distributed = "8ba89e20-285c-5b6f-9357-94700520ee1b"
