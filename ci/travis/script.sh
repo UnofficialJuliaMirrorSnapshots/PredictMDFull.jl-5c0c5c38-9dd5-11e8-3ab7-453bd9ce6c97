@@ -6,12 +6,17 @@ set -ev
 
 julia --check-bounds=yes --color=yes -e '
     import Pkg;
-    Pkg.Registry.add(Pkg.RegistrySpec(name="BCBIRegistry",url="https://github.com/bcbi/BCBIRegistry.git",uuid="26a550a3-39fe-4af4-af6d-e8814c2b6dd9",));
+    Pkg.Registry.add("General");
     '
 
 julia --check-bounds=yes --color=yes -e '
     import Pkg;
-    Pkg.Registry.add("General");
+    Pkg.Registry.update();
+    '
+
+julia --check-bounds=yes --color=yes -e '
+    import Pkg;
+    Pkg.Registry.add(Pkg.RegistrySpec(name="BCBIRegistry",url="https://github.com/bcbi/BCBIRegistry.git",uuid="26a550a3-39fe-4af4-af6d-e8814c2b6dd9",));
     '
 
 julia --check-bounds=yes --color=yes -e '
