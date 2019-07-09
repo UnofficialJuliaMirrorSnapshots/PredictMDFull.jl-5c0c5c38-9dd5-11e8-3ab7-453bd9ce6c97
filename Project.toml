@@ -1,7 +1,7 @@
 name = "PredictMDFull"
 uuid = "5c0c5c38-9dd5-11e8-3ab7-453bd9ce6c97"
 authors = ["Dilum Aluthge <dilum@aluthge.com>", "Brown Center for Biomedical Informatics <bcbi@brown.edu>"]
-version = "0.10.0-DEV"
+version = "0.10.0"
 
 [deps]
 Distributed = "8ba89e20-285c-5b6f-9357-94700520ee1b"
@@ -10,8 +10,9 @@ PredictMD = "3e7d7328-36f8-4388-bd01-4613c92c7370"
 PredictMDExtra = "d14d998a-9e6b-11e8-16d3-6f2879ea456d"
 
 [compat]
+PredictMD = ">= 0.31.0"
+PredictMDExtra = ">= 0.10.0"
 julia = "^1.1.0"
-PredictMD = ">= 0.30.1"
 
 [extras]
 Distributed = "8ba89e20-285c-5b6f-9357-94700520ee1b"
