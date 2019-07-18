@@ -5,32 +5,105 @@ Test.@testset "PredictMDFull.jl" begin
     import Pkg # stdlib
     import Test # stdlib
 
-    @info(string("Julia depot paths: "), Base.DEPOT_PATH)
-    @info(string("Julia load paths: "), Base.LOAD_PATH)
+    @debug(string("Julia depot paths: "), Base.DEPOT_PATH)
+    @debug(string("Julia load paths: "), Base.LOAD_PATH)
 
-    @info(string("Julia version info: ",))
-    InteractiveUtils.versioninfo(verbose=true)
+    logger = Base.CoreLogging.current_logger_for_env(Base.CoreLogging.Debug, Symbol(splitext(basename(something(@__FILE__, "nothing")))[1]), something(@__MODULE__, "nothing"))
+    if !isnothing(logger)
+        @debug(string("Julia version debug: ",))
+        InteractiveUtils.versioninfo(verbose=true)
+    end
 
-    @info(string("Output of Pkg.status():",),)
-    Pkg.status()
-
-    @info(string("Output of Pkg.status(Pkg.Types.PKGMODE_PROJECT):",),)
-    Pkg.status(Pkg.Types.PKGMODE_PROJECT)
-
-    @info(string("Output of Pkg.status(Pkg.Types.PKGMODE_MANIFEST):",),)
-    Pkg.status(Pkg.Types.PKGMODE_MANIFEST)
-
-    @info(string("Output of Pkg.status(Pkg.Types.PKGMODE_COMBINED):",),)
-    Pkg.status(Pkg.Types.PKGMODE_COMBINED)
-
-    @info(string("Attempting to import PredictMDFull...",))
+    @debug(string("Attempting to import PredictMDFull...",))
     import PredictMDFull
-    @info(string("Successfully imported PredictMDFull.",))
-    @info(string("PredictMDFull version: "),PredictMDFull.version(),)
-    @info(string("PredictMDFull package directory: "),PredictMDFull.package_directory(),)
+    @debug(string("Successfully imported PredictMDFull.",))
+    @debug(string("PredictMDFull version: "),PredictMDFull.version(),)
+    @debug(string("PredictMDFull package directory: "),PredictMDFull.package_directory(),)
 
-    @info(string("Julia depot paths: "), Base.DEPOT_PATH)
-    @info(string("Julia load paths: "), Base.LOAD_PATH)
+    PredictMDFull.import_all()
+
+    @debug(string("Julia depot paths: "), Base.DEPOT_PATH)
+    @debug(string("Julia load paths: "), Base.LOAD_PATH)
+
+    logger = Base.CoreLogging.current_logger_for_env(Base.CoreLogging.Debug, Symbol(splitext(basename(something(@__FILE__, "nothing")))[1]), something(@__MODULE__, "nothing"))
+    if !isnothing(logger)
+        if ispath(Base.active_project())
+            println(logger.stream, "# Location of test environment Project.toml: \"$(Base.active_project())\"")
+            println(logger.stream, "# Beginning of test environment Project.toml")
+            println(logger.stream, read(Base.active_project(), String))
+            println(logger.stream, "# End of test environment Project.toml")
+        else
+            println(logger.stream, "# File \"$(Base.active_project())\" does not exist")
+        end
+        if ispath(joinpath(dirname(Base.active_project()), "Manifest.toml"))
+            println(logger.stream, "# Location of test environment Manifest.toml: \"$(joinpath(dirname(Base.active_project()), "Manifest.toml"))\"")
+            println(logger.stream, "# Beginning of test environment Manifest.toml")
+            println(logger.stream, read(joinpath(dirname(Base.active_project()), "Manifest.toml"),String))
+            println(logger.stream, "# End of test environment Manifest.toml")
+        else
+            println(logger.stream, "# File \"$(joinpath(dirname(Base.active_project()), "Manifest.toml"))\" does not exist")
+        end
+    end
+
+    logger = Base.CoreLogging.current_logger_for_env(Base.CoreLogging.Debug, Symbol(splitext(basename(something(@__FILE__, "nothing")))[1]), something(@__MODULE__, "nothing"))
+    if !isnothing(logger)
+        if ispath(PredictMD.package_directory("Project.toml"))
+            println(logger.stream, "# Location of PredictMD package Project.toml: \"$(PredictMD.package_directory("Project.toml"))\"")
+            println(logger.stream, "# Beginning of PredictMD package Project.toml")
+            println(logger.stream, read(PredictMD.package_directory("Project.toml"), String))
+            println(logger.stream, "# End of PredictMD package Project.toml")
+        else
+            println(logger.stream, "# File \"$(PredictMD.package_directory("Project.toml"))\" does not exist")
+        end
+        if ispath(PredictMD.package_directory("Manifest.toml"))
+            println(logger.stream, "# Location of PredictMD package Manifest.toml: \"$(PredictMD.package_directory("Manifest.toml"))\"")
+            println(logger.stream, "# Beginning of PredictMD package Manifest.toml")
+            println(logger.stream, read(PredictMD.package_directory("Manifest.toml"),String))
+            println(logger.stream, "# End of PredictMD package Manifest.toml")
+        else
+            println(logger.stream, "# File \"$(PredictMD.package_directory("Manifest.toml"))\" does not exist")
+        end
+    end
+
+    logger = Base.CoreLogging.current_logger_for_env(Base.CoreLogging.Debug, Symbol(splitext(basename(something(@__FILE__, "nothing")))[1]), something(@__MODULE__, "nothing"))
+    if !isnothing(logger)
+        if ispath(PredictMDExtra.package_directory("Project.toml"))
+            println(logger.stream, "# Location of PredictMDExtra package Project.toml: \"$(PredictMDExtra.package_directory("Project.toml"))\"")
+            println(logger.stream, "# Beginning of PredictMDExtra package Project.toml")
+            println(logger.stream, read(PredictMDExtra.package_directory("Project.toml"), String))
+            println(logger.stream, "# End of PredictMDExtra package Project.toml")
+        else
+            println(logger.stream, "# File \"$(PredictMDExtra.package_directory("Project.toml"))\" does not exist")
+        end
+        if ispath(PredictMDExtra.package_directory("Manifest.toml"))
+            println(logger.stream, "# Location of PredictMDExtra package Manifest.toml: \"$(PredictMDExtra.package_directory("Manifest.toml"))\"")
+            println(logger.stream, "# Beginning of PredictMDExtra package Manifest.toml")
+            println(logger.stream, read(PredictMDExtra.package_directory("Manifest.toml"),String))
+            println(logger.stream, "# End of PredictMDExtra package Manifest.toml")
+        else
+            println(logger.stream, "# File \"$(PredictMDExtra.package_directory("Manifest.toml"))\" does not exist")
+        end
+    end
+
+    logger = Base.CoreLogging.current_logger_for_env(Base.CoreLogging.Debug, Symbol(splitext(basename(something(@__FILE__, "nothing")))[1]), something(@__MODULE__, "nothing"))
+    if !isnothing(logger)
+        if ispath(PredictMDFull.package_directory("Project.toml"))
+            println(logger.stream, "# Location of PredictMDFull package Project.toml: \"$(PredictMDFull.package_directory("Project.toml"))\"")
+            println(logger.stream, "# Beginning of PredictMDFull package Project.toml")
+            println(logger.stream, read(PredictMDFull.package_directory("Project.toml"), String))
+            println(logger.stream, "# End of PredictMDFull package Project.toml")
+        else
+            println(logger.stream, "# File \"$(PredictMDFull.package_directory("Project.toml"))\" does not exist")
+        end
+        if ispath(PredictMDFull.package_directory("Manifest.toml"))
+            println(logger.stream, "# Location of PredictMDFull package Manifest.toml: \"$(PredictMDFull.package_directory("Manifest.toml"))\"")
+            println(logger.stream, "# Beginning of PredictMDFull package Manifest.toml")
+            println(logger.stream, read(PredictMDFull.package_directory("Manifest.toml"),String))
+            println(logger.stream, "# End of PredictMDFull package Manifest.toml")
+        else
+            println(logger.stream, "# File \"$(PredictMDFull.package_directory("Manifest.toml"))\" does not exist")
+        end
+    end
 
     Test.@testset "Unit tests           " begin
         testmodulea_filename::String = joinpath("TestModuleA", "TestModuleA.jl")
@@ -62,5 +135,85 @@ Test.@testset "PredictMDFull.jl" begin
 
     Test.@testset "Test import_all()" begin
         include(joinpath("test_import_all.jl"))
+    end
+
+    logger = Base.CoreLogging.current_logger_for_env(Base.CoreLogging.Debug, Symbol(splitext(basename(something(@__FILE__, "nothing")))[1]), something(@__MODULE__, "nothing"))
+    if !isnothing(logger)
+        if ispath(Base.active_project())
+            println(logger.stream, "# Location of test environment Project.toml: \"$(Base.active_project())\"")
+            println(logger.stream, "# Beginning of test environment Project.toml")
+            println(logger.stream, read(Base.active_project(), String))
+            println(logger.stream, "# End of test environment Project.toml")
+        else
+            println(logger.stream, "# File \"$(Base.active_project())\" does not exist")
+        end
+        if ispath(joinpath(dirname(Base.active_project()), "Manifest.toml"))
+            println(logger.stream, "# Location of test environment Manifest.toml: \"$(joinpath(dirname(Base.active_project()), "Manifest.toml"))\"")
+            println(logger.stream, "# Beginning of test environment Manifest.toml")
+            println(logger.stream, read(joinpath(dirname(Base.active_project()), "Manifest.toml"),String))
+            println(logger.stream, "# End of test environment Manifest.toml")
+        else
+            println(logger.stream, "# File \"$(joinpath(dirname(Base.active_project()), "Manifest.toml"))\" does not exist")
+        end
+    end
+
+    logger = Base.CoreLogging.current_logger_for_env(Base.CoreLogging.Debug, Symbol(splitext(basename(something(@__FILE__, "nothing")))[1]), something(@__MODULE__, "nothing"))
+    if !isnothing(logger)
+        if ispath(PredictMD.package_directory("Project.toml"))
+            println(logger.stream, "# Location of PredictMD package Project.toml: \"$(PredictMD.package_directory("Project.toml"))\"")
+            println(logger.stream, "# Beginning of PredictMD package Project.toml")
+            println(logger.stream, read(PredictMD.package_directory("Project.toml"), String))
+            println(logger.stream, "# End of PredictMD package Project.toml")
+        else
+            println(logger.stream, "# File \"$(PredictMD.package_directory("Project.toml"))\" does not exist")
+        end
+        if ispath(PredictMD.package_directory("Manifest.toml"))
+            println(logger.stream, "# Location of PredictMD package Manifest.toml: \"$(PredictMD.package_directory("Manifest.toml"))\"")
+            println(logger.stream, "# Beginning of PredictMD package Manifest.toml")
+            println(logger.stream, read(PredictMD.package_directory("Manifest.toml"),String))
+            println(logger.stream, "# End of PredictMD package Manifest.toml")
+        else
+            println(logger.stream, "# File \"$(PredictMD.package_directory("Manifest.toml"))\" does not exist")
+        end
+    end
+
+    logger = Base.CoreLogging.current_logger_for_env(Base.CoreLogging.Debug, Symbol(splitext(basename(something(@__FILE__, "nothing")))[1]), something(@__MODULE__, "nothing"))
+    if !isnothing(logger)
+        if ispath(PredictMDExtra.package_directory("Project.toml"))
+            println(logger.stream, "# Location of PredictMDExtra package Project.toml: \"$(PredictMDExtra.package_directory("Project.toml"))\"")
+            println(logger.stream, "# Beginning of PredictMDExtra package Project.toml")
+            println(logger.stream, read(PredictMDExtra.package_directory("Project.toml"), String))
+            println(logger.stream, "# End of PredictMDExtra package Project.toml")
+        else
+            println(logger.stream, "# File \"$(PredictMDExtra.package_directory("Project.toml"))\" does not exist")
+        end
+        if ispath(PredictMDExtra.package_directory("Manifest.toml"))
+            println(logger.stream, "# Location of PredictMDExtra package Manifest.toml: \"$(PredictMDExtra.package_directory("Manifest.toml"))\"")
+            println(logger.stream, "# Beginning of PredictMDExtra package Manifest.toml")
+            println(logger.stream, read(PredictMDExtra.package_directory("Manifest.toml"),String))
+            println(logger.stream, "# End of PredictMDExtra package Manifest.toml")
+        else
+            println(logger.stream, "# File \"$(PredictMDExtra.package_directory("Manifest.toml"))\" does not exist")
+        end
+    end
+
+    logger = Base.CoreLogging.current_logger_for_env(Base.CoreLogging.Debug, Symbol(splitext(basename(something(@__FILE__, "nothing")))[1]), something(@__MODULE__, "nothing"))
+    if !isnothing(logger)
+        if ispath(PredictMDFull.package_directory("Project.toml"))
+            println(logger.stream, "# Location of PredictMDFull package Project.toml: \"$(PredictMDFull.package_directory("Project.toml"))\"")
+            println(logger.stream, "# Beginning of PredictMDFull package Project.toml")
+            println(logger.stream, read(PredictMDFull.package_directory("Project.toml"), String))
+            println(logger.stream, "# End of PredictMDFull package Project.toml")
+        else
+            println(logger.stream, "# File \"$(PredictMDFull.package_directory("Project.toml"))\" does not exist")
+        end
+        if ispath(PredictMDFull.package_directory("Manifest.toml"))
+            println(logger.stream, "# Location of PredictMDFull package Manifest.toml: \"$(PredictMDFull.package_directory("Manifest.toml"))\"")
+            println(logger.stream, "# Beginning of PredictMDFull package Manifest.toml")
+            println(logger.stream, read(PredictMDFull.package_directory("Manifest.toml"),String))
+            println(logger.stream, "# End of PredictMDFull package Manifest.toml")
+        else
+            println(logger.stream, "# File \"$(PredictMDFull.package_directory("Manifest.toml"))\" does not exist")
+        end
     end
 end
