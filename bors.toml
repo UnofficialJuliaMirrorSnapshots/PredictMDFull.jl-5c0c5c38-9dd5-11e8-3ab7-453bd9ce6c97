@@ -1,3 +1,5 @@
+block_labels = [ "DO NOT MERGE" ]
+
 delete_merged_branches = true
 
 status = [
@@ -7,3 +9,7 @@ status = [
 ]
 
 timeout_sec = 14400
+
+[committer]
+name = "BCBI Bot"
+email = "bcbi-git@brown.edu"
