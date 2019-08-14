@@ -1,4 +1,5 @@
-##### Beginning of file
+import PredictMDExtra
+import PredictMD
 
 function _predictmdfull_import_all(env::AbstractDict = ENV)::Bool
     raw_env_value = strip(
@@ -19,9 +20,10 @@ function _import_all_on_init(m::Module)::Nothing
     end
 end
 
+_import_all() = _import_all(Main)
 import_all() = import_all(Main)
 
-function import_all(m::Module)::Nothing
+function _import_all(m::Module)::Nothing
     package_list::Vector{String} = sort(unique(strip.(_package_list())))
     for p in package_list
         Base.eval(
@@ -56,6 +58,12 @@ function import_all(m::Module)::Nothing
                 ),
             )
     end
+    return nothing
 end
 
-##### End of file
+function import_all(m::Module)::Nothing
+    _import_all(m)
+    PredictMDExtra.import_all(m)
+    PredictMD.import_all(m)
+    return nothing
+end
