@@ -1,10 +1,6 @@
 #!/bin/bash
 
-##### Beginning of file
-
 set -ev
-
-julia --check-bounds=yes --color=yes ./ci/travis/package-overlap.jl
 
 julia --check-bounds=yes --color=yes -e '
     import Pkg;

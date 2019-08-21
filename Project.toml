@@ -10,7 +10,7 @@ PredictMD = "3e7d7328-36f8-4388-bd01-4613c92c7370"
 PredictMDExtra = "d14d998a-9e6b-11e8-16d3-6f2879ea456d"
 
 [compat]
-PredictMD = "^0.32.0, ^0.32.1"
+PredictMD = "^0.32.0, ^0.33.0"
 PredictMDExtra = "^0.11.2, ^0.12.0"
 julia = "^1.1.0"
 
